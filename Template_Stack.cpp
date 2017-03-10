@@ -1,5 +1,7 @@
 #include<iostream>
 #include <vector>
+#include <string>
+
 using namespace std;
 
 template<class T>
@@ -37,8 +39,9 @@ template<class T>
  template<class T>
  void Stack<T>::popBack()
  {
-     if(!empty())
-         elememt.pop_back(); 
+    if(elements.empty())
+        throw out_of_range("Stack is out of range");
+    elements.pop_back();
  }
 
  template <class T>
@@ -49,6 +52,7 @@ template<class T>
 
  int main()
  {
+    try{
      Stack<int> intStack;
      Stack<string> strStack;
      intStack.pushBack(4);
@@ -61,5 +65,10 @@ template<class T>
      strStack.popBack();
      strStack.popBack();
      strStack.popBack();
+    }
+    catch(exception excp)
+    {
+        cout<<excp.what()<<endl;
+    }
      return 0;
  }
